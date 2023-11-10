@@ -1,0 +1,4 @@
+fn : () int func {
+	int a;
+	a = 4;
+}
