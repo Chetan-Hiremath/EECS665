@@ -1,0 +1,17 @@
+1. What is the #line directive? Give an example where the directive might be useful.
+The #line directive tells the preprocessor to set the compiler's values' line numbers to the given line numbers and resets the line numbers in the code. An example of the #line directive is that it's used to give error messages of the certain source file, so it will be helpful for the users to detect errors on the generated program.
+
+2. What are the __LINE__ and __FILE__ macros? Give an example of how they might be useful.
+The __LINE__ and the __FILE__ macros are used to get the paths of the current line and the current file respectively because they are already defined. An example of the __LINE__ and the __FILE__ macros is that they can tell you the exact errors of the code on the terminal.
+
+3. Give an example of a preprocessor macro that you define that takes an argument. Typically, the use of such macros is discouraged. Why might that be?
+An example of a preprocessor macro is that it allows you to transform the program before it compiles on the terminal. The use of these macros is discouraged because macros won't be debugged, have unknown side effects or errors, and affect your program in an unfortunate manner. 
+
+4. What is the command-line option to make g++ print the preprocessed output to standard out?
+The command line that is used to print the preprocessed output to the standard output in g++ is g++ pre.cpp -E.
+
+5. Describe what the # operator does by explaining the output of the following program.
+The # operator converts macro parameters to string literals. When you run the following program by the command line, the terminal's output is "a+b*c" because the # operator converts the parameter of the macro into a string that is printed on the terminal.
+
+6. What is the command-line option to make g++ compile the following program so that it prints "bye" to std::cerr when run? 
+The command line that is used to print "bye" to std::cerr in g++ is g++ pre.cpp -E -DVERBOSE -DOUTMODE!=1 or g++ pre.cpp -E -DVERBOSE -DOUTMODE=n when n > 1. Because that message prints on the terminal if the OUTMODE is not equal to 1.

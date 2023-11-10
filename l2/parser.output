@@ -1,0 +1,259 @@
+Grammar
+
+    0 $accept: Equation END
+
+    1 Equation: Sum END
+
+    2 Sum: Sum PLUS Sub
+    3    | Sub
+
+    4 Sub: Sub MINUS Prod
+    5    | Prod
+
+    6 Prod: Prod MULT Quot
+    7     | Quot
+
+    8 Quot: Quot DIV Base
+    9     | Base
+
+   10 Base: INTLIT
+   11     | LPAR Sum RPAR
+
+
+Terminals, with rules where they appear
+
+    END (0) 0 1
+    error (256)
+    LPAR (258) 11
+    RPAR (259) 11
+    PLUS (260) 2
+    MINUS (261) 4
+    DIV (262) 8
+    MULT (263) 6
+    INTLIT <intVal> (264) 10
+
+
+Nonterminals, with rules where they appear
+
+    $accept (10)
+        on left: 0
+    Equation <transGood> (11)
+        on left: 1
+        on right: 0
+    Sum <intVal> (12)
+        on left: 2 3
+        on right: 1 2 11
+    Sub <intVal> (13)
+        on left: 4 5
+        on right: 2 3 4
+    Prod <intVal> (14)
+        on left: 6 7
+        on right: 4 5 6
+    Quot <intVal> (15)
+        on left: 8 9
+        on right: 6 7 8
+    Base <intVal> (16)
+        on left: 10 11
+        on right: 8 9
+
+
+State 0
+
+    0 $accept: • Equation END
+
+    LPAR    shift, and go to state 1
+    INTLIT  shift, and go to state 2
+
+    Equation  go to state 3
+    Sum       go to state 4
+    Sub       go to state 5
+    Prod      go to state 6
+    Quot      go to state 7
+    Base      go to state 8
+
+
+State 1
+
+   11 Base: LPAR • Sum RPAR
+
+    LPAR    shift, and go to state 1
+    INTLIT  shift, and go to state 2
+
+    Sum   go to state 9
+    Sub   go to state 5
+    Prod  go to state 6
+    Quot  go to state 7
+    Base  go to state 8
+
+
+State 2
+
+   10 Base: INTLIT •
+
+    $default  reduce using rule 10 (Base)
+
+
+State 3
+
+    0 $accept: Equation • END
+
+    END  shift, and go to state 10
+
+
+State 4
+
+    1 Equation: Sum • END
+    2 Sum: Sum • PLUS Sub
+
+    END   shift, and go to state 11
+    PLUS  shift, and go to state 12
+
+
+State 5
+
+    3 Sum: Sub •
+    4 Sub: Sub • MINUS Prod
+
+    MINUS  shift, and go to state 13
+
+    $default  reduce using rule 3 (Sum)
+
+
+State 6
+
+    5 Sub: Prod •
+    6 Prod: Prod • MULT Quot
+
+    MULT  shift, and go to state 14
+
+    $default  reduce using rule 5 (Sub)
+
+
+State 7
+
+    7 Prod: Quot •
+    8 Quot: Quot • DIV Base
+
+    DIV  shift, and go to state 15
+
+    $default  reduce using rule 7 (Prod)
+
+
+State 8
+
+    9 Quot: Base •
+
+    $default  reduce using rule 9 (Quot)
+
+
+State 9
+
+    2 Sum: Sum • PLUS Sub
+   11 Base: LPAR Sum • RPAR
+
+    RPAR  shift, and go to state 16
+    PLUS  shift, and go to state 12
+
+
+State 10
+
+    0 $accept: Equation END •
+
+    $default  accept
+
+
+State 11
+
+    1 Equation: Sum END •
+
+    $default  reduce using rule 1 (Equation)
+
+
+State 12
+
+    2 Sum: Sum PLUS • Sub
+
+    LPAR    shift, and go to state 1
+    INTLIT  shift, and go to state 2
+
+    Sub   go to state 17
+    Prod  go to state 6
+    Quot  go to state 7
+    Base  go to state 8
+
+
+State 13
+
+    4 Sub: Sub MINUS • Prod
+
+    LPAR    shift, and go to state 1
+    INTLIT  shift, and go to state 2
+
+    Prod  go to state 18
+    Quot  go to state 7
+    Base  go to state 8
+
+
+State 14
+
+    6 Prod: Prod MULT • Quot
+
+    LPAR    shift, and go to state 1
+    INTLIT  shift, and go to state 2
+
+    Quot  go to state 19
+    Base  go to state 8
+
+
+State 15
+
+    8 Quot: Quot DIV • Base
+
+    LPAR    shift, and go to state 1
+    INTLIT  shift, and go to state 2
+
+    Base  go to state 20
+
+
+State 16
+
+   11 Base: LPAR Sum RPAR •
+
+    $default  reduce using rule 11 (Base)
+
+
+State 17
+
+    2 Sum: Sum PLUS Sub •
+    4 Sub: Sub • MINUS Prod
+
+    MINUS  shift, and go to state 13
+
+    $default  reduce using rule 2 (Sum)
+
+
+State 18
+
+    4 Sub: Sub MINUS Prod •
+    6 Prod: Prod • MULT Quot
+
+    MULT  shift, and go to state 14
+
+    $default  reduce using rule 4 (Sub)
+
+
+State 19
+
+    6 Prod: Prod MULT Quot •
+    8 Quot: Quot • DIV Base
+
+    DIV  shift, and go to state 15
+
+    $default  reduce using rule 6 (Prod)
+
+
+State 20
+
+    8 Quot: Quot DIV Base •
+
+    $default  reduce using rule 8 (Quot)
