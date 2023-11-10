@@ -1,0 +1,11 @@
+FATAL [44,1]-[44,19]: Integer literal overflow 
+FATAL [45,1]-[45,11]: Integer literal overflow 
+FATAL [46,20]-[46,21]: Unterminated string literals detected Hello, World!
+FATAL [46,42]-[46,43]: Unterminated string literals detected &!88
+FATAL [46,49]-[46,50]: Unterminated string literals detected use 
+FATAL [46,53]-[46,54]: Illegal character \
+FATAL [46,54]-[46,55]: Unterminated string literals detected n to denote a newline character
+FATAL [46,88]-[46,89]: Unterminated string literals detected use 
+FATAL [46,92]-[46,93]: Illegal character \
+FATAL [46,93]-[46,94]: Bad escape sequences in unterminated string literals " to  for a quote and \\ for a backslash"
+

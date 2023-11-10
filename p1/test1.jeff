@@ -1,0 +1,52 @@
+bool
+close
+console
+else
+false
+file
+fn
+if
+int
+open
+return
+true
+void
+while
+&&
+=
+:
+,
++
+-
+==
+>
+>=
+{
+<
+<=
+(
+[
+!
+!=
+||
+--
+++
+?
+]
+<<
+}
+)
+;
+/
+*
+>>
+_d
+214748364709340394
+2147483659
+"This is a string
+"Hello, World!"
+11
+""
+"&!88"
+"use \n to denote a newline character"
+"use \" to  for a quote and \\ for a backslash"

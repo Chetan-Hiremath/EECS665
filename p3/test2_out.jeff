@@ -1,0 +1,30 @@
+int value;
+bool t;
+void f(int x) {
+	while (x) {
+		if ((x == 3)) {
+			y = 4;
+		} else {
+			z = 1;
+		}
+		while ((y == 0)) {
+			x++;
+		}
+		a = z;
+		b = (x != y);
+		c = (x == y);
+		d = (x > y);
+		e = (x >= y);
+		f = (x < y);
+		g = (x <= y);
+		h = (!x);
+		i = (-y);
+		f(x);
+		f();
+		k = "rockchalkjayhawks";
+		t = True;
+		f = False;
+		array[10] = 10;
+	}
+	return (x + 5);
+}

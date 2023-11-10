@@ -1,0 +1,12 @@
+FATAL [44,20]-[44,21]: Unterminated string literals detectedHello, World!
+FATAL [44,42]-[44,43]: Unterminated string literals detected&!88
+FATAL [44,49]-[44,50]: Unterminated string literals detecteduse 
+FATAL [44,53]-[44,54]: Illegal character \
+FATAL [44,54]-[44,55]: Unterminated string literals detectedn to denote a newline character
+FATAL [44,88]-[44,89]: Unterminated string literals detecteduse 
+FATAL [44,92]-[44,93]: Illegal character \
+FATAL [44,93]-[44,94]: Bad escape sequences in unterminated string literals" to  for a quote and \\ for a backslash"
+\q
+"Thice: \
+111
+214748364709340394

@@ -1,0 +1,13 @@
+int a;
+int globals1;
+int globals2;
+int f(int x) {
+	while (x) {
+		x++;
+	}
+	a = (a + 1);
+	b = (b - 2);
+	c = (c * 3);
+	d = (d / 4);
+	return (((x + 1) - ((2 * 3) / 4)) - 5);
+}
