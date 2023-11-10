@@ -1,0 +1,45 @@
+    1|       |#include <iostream>
+    2|       |#include <fstream>
+    3|       |#include <string>
+    4|       |using namespace std;
+    5|       |
+    6|      6|int main(int argc, char * argv[]){
+    7|      6|	ifstream in(argv[1]);
+    8|      6|	string opd1;
+    9|      6|	string opr;
+   10|      6|	string opd2;
+   11|      6|	std::getline(in, opd1, ' ');
+   12|      6|	std::getline(in, opr, ' ');
+   13|      6|	std::getline(in, opd2, ' ');
+   14|      6|	int opd1int = atoi(opd1.c_str());
+   15|      6|	int opd2int = atoi(opd2.c_str());
+   16|       |
+   17|      6|	  if (opr == "*")
+   18|      1|          {
+   19|      1|		cout << opd1int * opd2int << "\n";
+   20|      1|	  } 
+   21|      5|          else if (opr == "/")
+   22|      2|          {
+   23|      2|		if (opd2int == 0)
+   24|      1|                {
+   25|      1|			cerr << "divide by 0\n"; 
+   26|      1|		}
+   27|      1|                else
+   28|      1|                {
+   29|      1|		        cout << opd1int / opd2int << "\n";
+   30|      1|                }
+   31|      2|	  } 
+   32|      3|          else if (opr == "-")
+   33|      1|          {
+   34|      1|		cout << opd1int - opd2int << "\n";
+   35|      1|	  } 
+   36|      2|          else if (opr == "+")
+   37|      1|          {
+   38|      1|		cout << opd1int + opd2int << "\n";
+   39|      1|	  } 
+   40|      1|          else 
+   41|      1|          {
+   42|      1|                cerr << "bad opr " << opr << "\n";
+   43|      1|	  }
+   44|      6|}
+

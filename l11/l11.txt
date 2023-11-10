@@ -1,0 +1,71 @@
+1. Provide a snippet of C code that is vulnerable to a buffer overflow.
+int main(int argc, char *argv[]) 
+{
+  func(argv[1]);
+} 
+void func(char *v) 
+{ 
+  char buff[25];
+  strcpy(buff, v);
+} 
+
+This C program is vulnerable to a buffer overflow because the strcpy built-in function doesn't check the length of the string even though it uses the buff variable. It allocates 25 bytes to the buffer string, so strcpy gives you a buffer overflow. Because it doesn't follow the capacity or the length of the buffer. Therefore, this C code is vulnearble to a buffer overflow.
+
+2. Why are buffer overflows allowed to occur?
+Buffer overflows are allowed to occur because they occur when the amount of data in the buffer is greater than the capacity of the storage or overwrites the buffer bounds in the program. 
+
+3. Describe a static protection mechanism against buffer overflows for C (i.e. a defense against buffer overflows that issues error messages at compile time)
+A static protection mechanism is a defense against buffer overflows during the compile time. You can use the flag -Warray bounds when you compile with gcc, so it can check the C program and issue an error message about a buffer overflow during the compile time. 
+
+4. Describe a dynamic protection mechanism against buffer overflows for C (i.e. a defense against buffer overflows that issues error messages at run time)
+A dynamic protection mechanism is a defense against buffer overflows during the run time. You can use the address sanitize when you compile with gcc, so it can check the C program and issue an error message about a buffer overflow during the run time. 
+
+5. Use the AddressSanitizer mechanism of g++ to harden your example code from above. Show the output of your hardened program when an overflow is executed.
+=================================================================
+==1111321==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x614000000ff0 at pc 0x562fbc1e622c bp 0x7fffdfb98010 sp 0x7fffdfb98000
+WRITE of size 4 at 0x614000000ff0 thread T0
+    #0 0x562fbc1e622b in main /home/c743h357/EECS665/l11/prog.c:4
+    #1 0x7f1facdeed8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #2 0x7f1facdeee3f in __libc_start_main_impl ../csu/libc-start.c:392
+    #3 0x562fbc1e6104 in _start (/home/c743h357/EECS665/l11/prog+0x1104)
+
+0x614000000ff0 is located 3616 bytes to the right of 400-byte region [0x614000000040,0x6140000001d0)
+allocated by thread T0 here:
+    #0 0x7f1fad3d4337 in operator new[](unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:102
+    #1 0x562fbc1e61e5 in main /home/c743h357/EECS665/l11/prog.c:3
+    #2 0x7f1facdeed8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow /home/c743h357/EECS665/l11/prog.c:4 in main
+Shadow bytes around the buggy address:
+  0x0c287fff81a0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c287fff81b0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c287fff81c0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c287fff81d0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c287fff81e0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+=>0x0c287fff81f0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa[fa]fa
+  0x0c287fff8200: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c287fff8210: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c287fff8220: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c287fff8230: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c287fff8240: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+  Shadow gap:              cc
+==1111321==ABORTING

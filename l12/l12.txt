@@ -1,0 +1,45 @@
+Part 1:
+
+The below code for the GDB confinguration file will add a breakpoint for the class and print a strack track when that breakpoint is encountered. 
+
+set confirm off
+set breakpoint pending on
+
+break ToDoError::ToDoError()
+commands
+        where
+end
+
+define comp
+        set args 1 2 3 4 5 9
+        run
+end
+
+
+Part 2:
+
+1. What is the gdb command to inspect the value of the register %rax?
+The gdb command to inspect the value of the register %rax is the p $rax command.
+
+2. What is the gdb command to inspect the value at (i.e. pointed to by) the register %rax?
+The gdb command to inspect the value at the register %rax is the p/x $rax command.
+ 
+3. What is the gdb command to set the value of the register %rax?
+The gdb command to set the value of the register %rax is the set %rax command.
+
+4. What is the gdb command to show the value of all registers?
+The gdb command to show the value of the registers is the info registers command.
+
+Part 3:
+
+1. How big is the activation record of the current function? Hint: Consider the values of %rbp and %rsp.
+The size of the activation record of the current function is 32-byte. It is determined by the reigsters' values, which are 0x7ffffffedfd8 and 0x7ffffffedfd8, since the size depends on the program.
+
+2. What is the location to which the current function will return? Hint: Consider the values of the saved instruction pointer. (%rip)
+The location that returns the current function is 0x401023.
+
+3. What is the value of the first local variable (It is of 8 bytes)?
+The value of the first local variable is 4202496. 
+
+4. What is the value at the 8-byte global at label GBL? Hint: Use the objdump -Dwrt command to find the address of GBL.
+The value at the 8-byte global at label GBL is 0x000000000040101e.

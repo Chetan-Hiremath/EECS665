@@ -1,0 +1,99 @@
+
+code.exe:     file format elf64-x86-64
+
+SYMBOL TABLE:
+0000000000000000 l    df *ABS*	0000000000000000 code.o
+0000000000402000 l       .data	0000000000000000 nums
+0000000000402018 l       .data	0000000000000000 num_count
+0000000000402020 l       .data	0000000000000000 sum
+0000000000401000 l       .text	0000000000000000 rand_loop_init
+000000000040100f l       .text	0000000000000000 rand_loop_head
+0000000000401045 l       .text	0000000000000000 rand_loop_after
+0000000000401015 l       .text	0000000000000000 rand_loop_body
+0000000000401046 l       .text	0000000000000000 sum_loop_init
+0000000000401055 l       .text	0000000000000000 sum_loop_head
+000000000040105b l       .text	0000000000000000 sum_loop_body
+0000000000401065 l       .text	0000000000000000 sum_loop_after
+0000000000401066 l       .text	0000000000000000 prog_exit
+0000000000401000 g       .text	0000000000000000 _start
+0000000000402028 g       .data	0000000000000000 __bss_start
+0000000000402028 g       .data	0000000000000000 _edata
+0000000000402028 g       .data	0000000000000000 _end
+
+
+
+Disassembly of section .text:
+
+0000000000401000 <_start>:
+  401000:	49 c7 c4 00 20 40 00 	mov    $0x402000,%r12
+  401007:	4c 8b 2c 25 18 20 40 00 	mov    0x402018,%r13
+
+000000000040100f <rand_loop_head>:
+  40100f:	49 83 fd 00          	cmp    $0x0,%r13
+  401013:	74 30                	je     401045 <rand_loop_after>
+
+0000000000401015 <rand_loop_body>:
+  401015:	48 c7 c0 3e 01 00 00 	mov    $0x13e,%rax
+  40101c:	4c 89 e7             	mov    %r12,%rdi
+  40101f:	48 c7 c6 01 00 00 00 	mov    $0x1,%rsi
+  401026:	48 c7 c2 00 00 00 00 	mov    $0x0,%rdx
+  40102d:	0f 05                	syscall 
+  40102f:	4d 8b 14 24          	mov    (%r12),%r10
+  401033:	49 83 e2 0f          	and    $0xf,%r10
+  401037:	4d 89 14 24          	mov    %r10,(%r12)
+  40103b:	49 83 c4 08          	add    $0x8,%r12
+  40103f:	49 83 ed 01          	sub    $0x1,%r13
+  401043:	eb ca                	jmp    40100f <rand_loop_head>
+
+0000000000401045 <rand_loop_after>:
+  401045:	90                   	nop
+
+0000000000401046 <sum_loop_init>:
+  401046:	49 c7 c4 00 20 40 00 	mov    $0x402000,%r12
+  40104d:	4c 8b 2c 25 18 20 40 00 	mov    0x402018,%r13
+
+0000000000401055 <sum_loop_head>:
+  401055:	49 83 fd 00          	cmp    $0x0,%r13
+  401059:	74 ea                	je     401045 <rand_loop_after>
+
+000000000040105b <sum_loop_body>:
+  40105b:	4d 8b 14 24          	mov    (%r12),%r10
+  40105f:	90                   	nop
+  401060:	90                   	nop
+  401061:	90                   	nop
+  401062:	90                   	nop
+  401063:	90                   	nop
+  401064:	90                   	nop
+
+0000000000401065 <sum_loop_after>:
+  401065:	90                   	nop
+
+0000000000401066 <prog_exit>:
+  401066:	48 c7 c0 3c 00 00 00 	mov    $0x3c,%rax
+  40106d:	48 8b 3c 25 20 20 40 00 	mov    0x402020,%rdi
+  401075:	0f 05                	syscall 
+
+Disassembly of section .data:
+
+0000000000402000 <nums>:
+  402000:	01 00                	add    %eax,(%rax)
+  402002:	00 00                	add    %al,(%rax)
+  402004:	00 00                	add    %al,(%rax)
+  402006:	00 00                	add    %al,(%rax)
+  402008:	02 00                	add    (%rax),%al
+  40200a:	00 00                	add    %al,(%rax)
+  40200c:	00 00                	add    %al,(%rax)
+  40200e:	00 00                	add    %al,(%rax)
+  402010:	03 00                	add    (%rax),%eax
+  402012:	00 00                	add    %al,(%rax)
+  402014:	00 00                	add    %al,(%rax)
+	...
+
+0000000000402018 <num_count>:
+  402018:	03 00                	add    (%rax),%eax
+  40201a:	00 00                	add    %al,(%rax)
+  40201c:	00 00                	add    %al,(%rax)
+	...
+
+0000000000402020 <sum>:
+	...

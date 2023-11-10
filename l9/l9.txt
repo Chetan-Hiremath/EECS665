@@ -1,0 +1,11 @@
+1. Why aren't all functions made virtual in C++?
+The functions aren't initially virtual in C++ because they are slow during compilation and add extra storage to classes and their member functions unless you need to override them. 
+
+2. What is a vtable?
+A vtable is a virtual table that supports virutal method or dynamic dispatch and resolves function calls in a virtual or a dynamic manner. 
+
+3. Use g++ to get the mangled name of the function. What is the mangled name?
+The mangled name of the function when you use g++ is _Z4funci, and you can get the mangled name by using the "g++ example.cpp -S" command line.
+
+4. Use c++filt to get the de-mangled name of the function. What is the demangled name?
+The demangled name of the function when you use c++filt is func(int), and you can get the demangled name by using the "echo "_Z4funci" | c++filt" command line. 
