@@ -1,0 +1,5 @@
+int a;
+bool b;
+fn : () void f{
+	a = b;
+}
