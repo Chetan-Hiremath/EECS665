@@ -1,0 +1,17 @@
+bool func(int x, int y)
+{
+  if (x == y)
+  {
+    return true;
+  }
+  else 
+  {
+    return false;
+  }
+}
+int val (int n)
+{
+  return 2001;
+  return 2019;
+  return 2023;
+}

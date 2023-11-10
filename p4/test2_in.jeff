@@ -1,0 +1,21 @@
+int a;
+bool b;
+int c;
+bool d;
+int e (bool t)
+{
+  while (t == 0)
+  {
+    a--;
+  }
+  return a;
+}
+int f (int n)
+{
+  n++;
+  return n;
+}
+void g ()
+{
+  return 1;
+}

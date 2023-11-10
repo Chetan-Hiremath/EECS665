@@ -1,0 +1,5 @@
+bool glob;
+fn : () int main{
+	int a;
+	glob = a;
+}

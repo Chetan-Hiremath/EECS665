@@ -1,0 +1,7 @@
+fn : (int arg1,bool arg2) int f{
+}
+fn : () void g {
+	int a;
+	f(a, true);
+	g();
+}
